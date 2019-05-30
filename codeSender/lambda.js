@@ -3,7 +3,7 @@ const sns = new AWS.SNS();
 
 exports.handler = function (event, context, callback) {
 
-    let to = event['to'];
+    let receiver = event['receiver'];
     let sender = event['sender'];
     let message = event['message'];
 
@@ -20,7 +20,7 @@ exports.handler = function (event, context, callback) {
                 StringValue: sender
             }
         },
-        PhoneNumber: to
+        PhoneNumber: receiver
     }).promise()
         .then(data => {
             // your code goes here
